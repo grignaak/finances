@@ -1,0 +1,3 @@
+module Money::Model
+
+end
