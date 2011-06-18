@@ -1,0 +1,8 @@
+A category has carry-over balance, a list of spendings, a balance from this
+month and to-be-carried-over balance, and two lists of contributions (giving,
+receiving)
+
+The to-be-carried-over balance is (new-balance + carry-over + contributions) -
+(spendings + contributions)
+
+a contribution is a liability from one category and an asset in another
