@@ -1,8 +1,7 @@
 require 'money_model'
 require 'test/unit'
 
-module Money
-module Model
+module Money::Model
 
 describe Dollars do
   it "should display the balance" do
@@ -72,6 +71,4 @@ describe Category do
   end
 end
 
-
-end
 end
