@@ -14,20 +14,20 @@ describe Principle do
   end
 end
 
-describe Category do
+describe Section do
   it "should accept a sub-item" do
-    c = Category.new 
+    c = Section.new 
     c << Principle.asset(0)
     c.sub_items.length.should == 1
   end
 
   it "should keep a balance" do
-    c = Category.new
+    c = Section.new
     c.balance.should == 0
   end
 
-  it "should keep a balance of it's sub-item" do
-    c = Category.new
+  it "should keep a balance of its sub-items" do
+    c = Section.new
     c << Principle.asset(100)
     c.balance.should == 100
   end
@@ -41,6 +41,26 @@ describe Tax do
   end
 end
 
+
+describe Budget do
+  it "should have income, needs, wants, savings sections" do
+    app = Budget.new
+    app.income.should_not be_nil
+    app.wants.should_not be_nil
+    app.savings.should_not be_nil
+    app.needs.should_not be_nil
+  end
+
+  it "should have the balance of income-wants-savings-needs" do
+    app = Budget.new
+    app.income << Principle.asset(1000)
+    app.wants << Principle.asset(10)
+    app.savings << Principle.asset(20)
+    app.needs << Principle.asset(30)
+
+    app.balance.should == 940
+  end
+end
 
 end
 end

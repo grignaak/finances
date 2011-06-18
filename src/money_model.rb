@@ -1,7 +1,25 @@
 module Money
 module Model
 
-  class Category
+  class Budget
+    attr_reader :wants, :needs, :savings, :income
+
+    def initialize
+      @income = Section.new
+      @wants = Section.new
+      @needs = Section.new
+      @savings = Section.new
+      
+      @outflow = Section.new
+      [@wants, @needs, @savings].each {|o| @outflow << o }
+    end
+
+    def balance
+      @income.balance - @outflow.balance
+    end
+  end
+
+  class Section
     attr_reader :sub_items
 
     def initialize()
