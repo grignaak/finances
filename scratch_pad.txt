@@ -1,6 +1,8 @@
 primitive exception? sometimes using Dollars sometimes primitives
 
-a contribution is a liability from one category and an asset in another
+adding/removing a contribution in one category should do same it in src/dest
 
 an allowance can either be a percentage or a fixed amount -- not both
 updates to the income should reflect in the allowance of the categories
+
+names on sections categories?

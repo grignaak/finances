@@ -18,6 +18,11 @@ module Money::Model
       (allowance.amount + carry_over + contributions.balance) - expenses.balance
     end
 
+    def contribute_to(category, amount)
+      expenses << amount
+      category.contributions << amount
+    end
+
     def inspect
         {:allowance => allowance,
          :expenses => expenses,

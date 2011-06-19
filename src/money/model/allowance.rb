@@ -5,7 +5,7 @@ module Model
     
     def initialize(budget)
       @budget = budget
-      amount = 0
+      self.amount = 0
     end
 
     def percentage=(percentage)

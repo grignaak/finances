@@ -44,7 +44,10 @@ end
 
 describe Category do
   MockBudget = Dollars
-  subject { Category.new MockBudget.new(1000) }
+  def new_category
+    Category.new MockBudget.new(1000) 
+  end
+  subject { new_category }
   
   describe 'Category Allowance' do
     it "should be expressible as percentage of the whole" do
@@ -85,6 +88,34 @@ describe Category do
     subject.contributions << Dollars.new(10)
     subject.expenses << Dollars.new(1111)
     subject.end_balance.should == -1
+  end
+
+  describe 'contributions' do
+    it "should contribute to another category" do
+      c = new_category
+      c.allowance.amount = 1000
+      subject.allowance.amount = 1000
+
+      subject.contribute_to c, Dollars.new(100)
+
+      subject.end_balance.should == 900
+      c.end_balance.should == 1100
+    end
+
+    xit "should be removed from source when removed from destination" do
+      c = new_category
+    
+      subject.contribute_to c, Dollars.new(100)
+      contribution = c.contributions[0]
+
+      c.contributions.remove contribution
+
+      subject.end_balance.should == 0
+    end
+
+    xit "should be removed from destination when removed from source" do
+
+    end
   end
 end
 
