@@ -5,21 +5,17 @@ module Model
     
     def initialize(budget)
       @budget = budget
-      self.amount = 0
+      self.amount = Dollars.new(0)
     end
 
     def percentage=(percentage)
       @percentage = percentage
-      @amount = (percentage / 100.0) * budget
+      @amount = @budget.at_rate percentage / 100.0
     end
 
     def amount=(amount)
       @amount = amount
-      @percentage =  (100.0 * amount) / budget
-    end
-
-    def budget
-      @budget.balance
+      @percentage =  100.0 * amount.percentage_of(@amount)
     end
   end
 end

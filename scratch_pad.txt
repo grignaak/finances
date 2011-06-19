@@ -1,8 +1,12 @@
-primitive exception? sometimes using Dollars sometimes primitives
+get rid of Dollars#balance ??
+get rid of Section#sub_items
 
 adding/removing a contribution in one category should do same it in src/dest
+
+a contribution doesn't affect monthly percentage
+--unless the carry_over balance goes to zero
 
 an allowance can either be a percentage or a fixed amount -- not both
 updates to the income should reflect in the allowance of the categories
 
-names on sections categories?
+names on sections. categories too?
