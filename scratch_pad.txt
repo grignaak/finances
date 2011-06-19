@@ -1,8 +1,6 @@
-A category has carry-over balance, a list of spendings, a balance from this
-month and to-be-carried-over balance, and two lists of contributions (giving,
-receiving)
-
-The to-be-carried-over balance is (new-balance + carry-over + contributions) -
-(spendings + contributions)
+primitive exception? sometimes using Dollars sometimes primitives
 
 a contribution is a liability from one category and an asset in another
+
+an allowance can either be a percentage or a fixed amount -- not both
+updates to the income should reflect in the allowance of the categories

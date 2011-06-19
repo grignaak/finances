@@ -1,5 +1,4 @@
 require 'money_model'
-require 'test/unit'
 
 module Money::Model
 
@@ -44,30 +43,48 @@ end
 
 
 describe Category do
-  Dollars = Dollars
+  MockBudget = Dollars
+  subject { Category.new MockBudget.new(1000) }
   
-  describe Allowance do
+  describe 'Category Allowance' do
     it "should be expressible as percentage of the whole" do
-      c = Category.new Dollars.new(1000)
-      c.allowance.percentage = 20
-
-      c.allowance.amount.should == 200
+      subject.allowance.percentage = 20
+      subject.allowance.amount.should == 200
     end
 
     it "should be expressible as an amount" do
-      c = Category.new Dollars.new(1000)
-      c.allowance.amount = 200
-
-      c.allowance.percentage = 20
+      subject.allowance.amount = 200
+      subject.allowance.percentage = 20
     end
   end
+  
+  it "should have an allowance" do
+    subject.allowance.percentage = 20
+  end
 
-  it "should have a list of balances" do
-    c = Category.new Dollars.new(1000)
-    c << Dollars.new(10)
-    c << Dollars.new(20)
+  it "should have a carry-over balance" do
+    subject.carry_over = 100
+    subject.carry_over.should == 100
+  end
 
-    c.balance.should == 30
+  it "should have a list of contributions" do
+    subject.contributions << Dollars.new(10)
+    subject.contributions << Dollars.new(40)
+    subject.contributions.balance.should == 50
+  end
+
+  it "should have a list of expenses" do
+    subject.expenses << Dollars.new(10)
+    subject.expenses << Dollars.new(20)
+    subject.expenses.balance.should == 30
+  end
+
+  it "should have an end balance" do
+    subject.allowance.amount = 1000
+    subject.carry_over = 100
+    subject.contributions << Dollars.new(10)
+    subject.expenses << Dollars.new(1111)
+    subject.end_balance.should == -1
   end
 end
 
