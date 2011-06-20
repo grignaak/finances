@@ -5,9 +5,9 @@ require 'money/model/section'
 
 module Money::Model
   class Contribution
-    attr_accessor :balance
-    def initialize(balance)
-      @balance = balance
+    attr_accessor :total
+    def initialize(total)
+      @total = total
     end
   end
 
@@ -24,10 +24,10 @@ module Money::Model
     end
     
     def end_balance
-      carry_over.balance \
+      carry_over \
       + allowance.amount \
-      + contributions.balance \
-      - expenses.balance
+      + contributions.total \
+      - expenses.total
     end
 
     def contribute_to(category, amount)

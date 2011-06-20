@@ -14,9 +14,5 @@ module Money::Model
     def initialize
       [wants, needs, savings].each {|o| outflow << o }
     end
-
-    def balance
-      income.balance - outflow.balance
-    end
   end
 end

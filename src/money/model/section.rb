@@ -1,23 +1,36 @@
 module Money
 module Model
+  class Entry
+    attr_accessor :total
+    def initialize(amount)
+      @total = amount
+    end
+  end
+
   class Section
-    attr_reader :sub_items
+    def self.singleton(amount)
+      Entry.new amount
+    end
 
     def initialize()
-      @sub_items = []
+      @entries = []
+    end
+
+    def items
+      @entries.length
     end
 
     def <<(sub_category)
-      @sub_items << sub_category
+      @entries << sub_category
     end
 
     def [](index)
-      @sub_items[index]
+      @entries[index]
     end
 
-    def balance
-      sub_items.inject(Dollars.new(0)) do |total, category|
-        total + category.balance
+    def total
+      @entries.inject(Dollars.new(0)) do |total, category|
+        total + category.total
       end
     end
   end 

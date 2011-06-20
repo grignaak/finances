@@ -3,48 +3,41 @@ module Model
   class Dollars
     include Comparable
     
-    def balance
-      self
-    end
-
     def self.zero
       Dollars.new 0
     end
 
     def initialize(balance)
-      @balance = balance.to_f
+      @amount = balance.to_f
     end
 
     def to_s
-      "$#{@balance.round}"
+      "$#{amount.round}"
     end
 
     def +(other)
-      Dollars.new(_balance + other._balance)
+      Dollars.new(amount + other.amount)
     end
 
     def -(other)
-      Dollars.new(_balance - other._balance)
+      Dollars.new(amount - other.amount)
     end
 
     def percentage_of(other)
       return 0 if other == Dollars.zero
-      _balance / other._balance
+      amount / other.amount
     end
 
     def at_rate(rate)
-      Dollars.new(_balance * rate)
+      Dollars.new(amount * rate)
     end
 
     def <=>(other)
-      @balance <=> other._balance
+      amount <=> other.amount
     end
 
     protected
-    def _balance
-      @balance
-    end
-    
+    attr_reader :amount
   end
 end
 end

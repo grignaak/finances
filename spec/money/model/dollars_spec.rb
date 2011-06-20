@@ -21,6 +21,7 @@ describe Dollars do
       Dollars.new(1.49).to_s.should == "$1"
     end
   end
+  
   it "should handle addition" do
     (Dollars.new(1200) + Dollars.new(12)).should == Dollars.new(1212)
   end

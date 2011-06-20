@@ -33,22 +33,22 @@ describe Category do
   end
 
   it "should have a list of contributions" do
-    subject.contributions << Dollars.new(10)
-    subject.contributions << Dollars.new(40)
-    subject.contributions.balance.should == Dollars.new(50)
+    subject.contributions << Section.singleton(Dollars.new(10))
+    subject.contributions << Section.singleton(Dollars.new(40))
+    subject.contributions.total.should == Dollars.new(50)
   end
 
   it "should have a list of expenses" do
-    subject.expenses << Dollars.new(10)
-    subject.expenses << Dollars.new(20)
-    subject.expenses.balance.should == Dollars.new(30)
+    subject.expenses << Section.singleton(Dollars.new(10))
+    subject.expenses << Section.singleton(Dollars.new(20))
+    subject.expenses.total.should == Dollars.new(30)
   end
 
   it "should have an end balance" do
     subject.allowance.amount = Dollars.new(1000)
     subject.carry_over = Dollars.new(100)
-    subject.contributions << Dollars.new(10)
-    subject.expenses << Dollars.new(1111)
+    subject.contributions << Entry.new(Dollars.new(10))
+    subject.expenses << Section.singleton(Dollars.new(1111))
     subject.end_balance.should == Dollars.new(-1)
   end
 
@@ -65,7 +65,7 @@ describe Category do
     end
 
     it "should be reflect updates in both source and destination" do
-      @contribution.balance = Dollars.new(200)
+      @contribution.total = Dollars.new(200)
       
       @c.end_balance.should == Dollars.new(200)
       subject.end_balance.should == Dollars.new(-200)
