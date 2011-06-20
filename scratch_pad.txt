@@ -1,0 +1,20 @@
+rename Dollars#at_rate
+
+rename Entry
+get rid of Section.singleton
+put Contribution into own file
+put Entry into own file
+
+re-ordering sub-sections
+
+adding/removing a contribution in one category should do same it in src/dest
+
+a contribution doesn't affect monthly percentage
+--unless the carry_over balance goes to zero
+
+an allowance can either be a percentage or a fixed amount -- not both
+updates to the income should reflect in the allowance of the categories
+
+names on sections. categories too?
+
+contributions towards debts
